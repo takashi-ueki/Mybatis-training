@@ -1,0 +1,3 @@
+# Mybatis-training
+Mybatisを使用してREST APIとDatabaseを連携するレポジトリです。
+MySQLの情報をlocalhostに反映させます。
