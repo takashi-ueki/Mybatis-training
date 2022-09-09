@@ -1,0 +1,17 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password    #デフォルトの認証プラグイン。取り急ぎこれを使う
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example  #//MySQLにおけるスーパーユーザであるrootアカウントに設定するためのパスワードを指定
+      MYSQL_DATABASE: household_account #イメージの起動時に作成するデータベースの名前を指定
+      MYSQL_USER: user #新規ユーザの作成とそのユーザのパスワード設定に使用
+      MYSQL_PASSWORD: example
+    ports:
+      - 3306:3306   #ホストポートは３３０6を使用
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d #sqlディレクトリ配下の「.sql」「.sh」「.sql.gz」ファイルを実行
